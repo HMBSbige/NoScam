@@ -9,7 +9,8 @@ class ListAdapter(val context: Context, val list: ArrayList<SmsData>) : BaseAdap
 {
 	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
 	{
-		val view = LayoutInflater.from(context).inflate(R.layout.row_layout, parent, false)
+		val view = LayoutInflater.from(context)
+			.inflate(R.layout.row_layout, parent, false)
 		view.sms_sender.text = list[position].senderName
 		view.sms_message.text = list[position].message
 		view.sms_date.text = list[position].date

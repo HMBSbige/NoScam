@@ -1,10 +1,7 @@
 package com.bige0.noscam
 
 import android.*
-import android.app.*
-import android.content.*
 import android.content.pm.*
-import android.graphics.*
 import android.net.*
 import android.os.*
 import android.support.v4.app.*
@@ -18,12 +15,14 @@ class MainActivity : AppCompatActivity()
 {
 	private val requestReadSms: Int = 2
 
-	private val requestReceiveSms: Int = 2
+	private val requestReceiveSms: Int = 4
 
 	override fun onCreate(savedInstanceState: Bundle?)
 	{
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
+
+		Notify.createChannel(this)
 
 		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED)
 		{
@@ -36,32 +35,11 @@ class MainActivity : AppCompatActivity()
 		}
 		else
 		{
-			setSmsMessages("", null)
+			setSmsMessages("inbox", null)
 		}
 
 		findViewById<Button>(R.id.one_number_sms).setOnClickListener {
-			val notificationManager = (this as Context).getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-			val notificationId = 0x1234
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-			{
-				var mChannel = NotificationChannel("1", "my_channel_01" as CharSequence, NotificationManager.IMPORTANCE_DEFAULT)
-				mChannel.enableLights(true)
-				mChannel.lightColor = Color.RED
-				mChannel.enableVibration(true)
-				notificationManager!!.createNotificationChannel(mChannel)
-				var builder = Notification.Builder(this, "1")
-				builder.setSmallIcon(android.R.drawable.stat_notify_error)
-					.setContentTitle("开心不开心")
-					.setContentText("开心")
-					.setNumber(3)
-					.setAutoCancel(true)
-				notificationManager.notify(notificationId, builder.build())
-			}
-			else
-			{
-				TODO("VERSION.SDK_INT < O")
-			}
-
+			Notify.warn(this, "标题", "内容")
 		}
 
 
@@ -84,7 +62,10 @@ class MainActivity : AppCompatActivity()
 
 	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
 	{
-		if (requestCode == requestReadSms) setSmsMessages("", null)
+		if (requestCode == requestReadSms)
+		{
+			setSmsMessages("inbox", null)
+		}
 	}
 
 	private fun setSmsMessages(uriString: String, selection: String?)
