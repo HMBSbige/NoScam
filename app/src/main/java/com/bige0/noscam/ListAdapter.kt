@@ -5,7 +5,7 @@ import android.view.*
 import android.widget.*
 import kotlinx.android.synthetic.main.row_layout.view.*
 
-class ListAdapter(val context: Context, val list: ArrayList<SmsData>) : BaseAdapter()
+class ListAdapter(private val context: Context, private val list: ArrayList<SmsData>) : BaseAdapter()
 {
 	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
 	{

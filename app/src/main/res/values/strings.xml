@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">NoScam</string>
-    <string name="helloworld">HMBSbige</string>
+    <string name="title_activity_main">NoScam</string>
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
+    <string name="nav_header_title">NoScam</string>
+    <string name="nav_header_subtitle">admin@bige0.com</string>
+    <string name="nav_header_desc">NoScam</string>
+    <string name="action_settings">设置</string>
+    <string name="send">手动检测</string>
 </resources>
