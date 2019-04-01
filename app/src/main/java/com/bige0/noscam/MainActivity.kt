@@ -1,12 +1,12 @@
 package com.bige0.noscam
 
 import android.*
+import android.content.*
 import android.content.pm.*
 import android.net.*
 import android.os.*
 import android.support.v4.app.*
 import android.support.v7.app.*
-import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -35,28 +35,22 @@ class MainActivity : AppCompatActivity()
 		}
 		else
 		{
-			setSmsMessages("inbox", null)
+			refreshList()
 		}
 
-		findViewById<Button>(R.id.one_number_sms).setOnClickListener {
+		test_button.setOnClickListener {
 			Notify.warn(this, "标题", "内容")
 		}
 
-
-		all_sms.setOnClickListener {
-			setSmsMessages("", null)
-		}
 		inbox_sms.setOnClickListener {
 			setSmsMessages("inbox", null)
 		}
-		outbox_sms.setOnClickListener {
-			setSmsMessages("outbox", null)
-		}
-		sent_sms.setOnClickListener {
-			setSmsMessages("sent", null)
-		}
-		draft_sms.setOnClickListener {
-			setSmsMessages("draft", null)
+
+		registerReceiver(receiveSms, IntentFilter("android.provider.Telephony.SMS_RECEIVED"))
+
+		pullToRefresh.setOnRefreshListener {
+			refreshList()
+			pullToRefresh.isRefreshing = false
 		}
 	}
 
@@ -64,8 +58,13 @@ class MainActivity : AppCompatActivity()
 	{
 		if (requestCode == requestReadSms)
 		{
-			setSmsMessages("inbox", null)
+			refreshList()
 		}
+	}
+
+	private fun refreshList()
+	{
+		setSmsMessages("inbox", null)
 	}
 
 	private fun setSmsMessages(uriString: String, selection: String?)
@@ -92,4 +91,19 @@ class MainActivity : AppCompatActivity()
 			sms_list_view.adapter = adapter
 		}
 	}
+
+	private var receiveSms: BroadcastReceiver = object : BroadcastReceiver()
+	{
+		override fun onReceive(context: Context, intent: Intent)
+		{
+			refreshList()
+		}
+	}
+
+	override fun onDestroy()
+	{
+		super.onDestroy()
+		unregisterReceiver(receiveSms)
+	}
+
 }

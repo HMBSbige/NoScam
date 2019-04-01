@@ -13,14 +13,6 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/all_sms"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="all"
-            android:textSize="14sp" />
-
-        <android.support.v7.widget.AppCompatButton
             android:id="@+id/inbox_sms"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -29,41 +21,24 @@
             android:textSize="14sp" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/outbox_sms"
+            android:id="@+id/test_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="outbox"
-            android:textSize="14sp" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/sent_sms"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="sent"
-            android:textSize="14sp" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/draft_sms"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="draft"
-            android:textSize="14sp" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/one_number_sms"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="1 num"
+            android:text="TEST"
             android:textSize="14sp" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/sms_list_view"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6" />
+        android:layout_weight="6">
+
+        <ListView
+            android:id="@+id/sms_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
