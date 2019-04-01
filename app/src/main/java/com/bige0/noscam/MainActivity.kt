@@ -96,7 +96,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		// as you specify a parent activity in AndroidManifest.xml.
 		return when (item.itemId)
 		{
-			R.id.action_settings -> true
+			R.id.action_settings ->
+			{
+				val intent = Intent(this, SettingsActivity::class.java)
+				startActivity(intent)
+				true
+			}
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
@@ -108,7 +113,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		{
 			R.id.nav_manage ->
 			{
-
+				val intent = Intent(this, SettingsActivity::class.java)
+				startActivity(intent)
 			}
 			R.id.nav_send ->
 			{
