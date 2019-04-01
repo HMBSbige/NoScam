@@ -2,6 +2,7 @@ package com.bige0.noscam
 
 import android.content.*
 import android.os.*
+import android.preference.*
 import android.telephony.*
 
 
@@ -30,7 +31,10 @@ class SmsReceiver : BroadcastReceiver()
 				phoneNumber = smsMessage.originatingAddress
 				messageText += smsMessage.messageBody.toString()
 			}
-			Notify.requestAndWarn(context, "https://spam.bige0.cn/api/spams", messageText, phoneNumber)
+
+			val p = PreferenceManager.getDefaultSharedPreferences(context)
+			val server = p.getString("Server", "https://spam.bige0.cn/api/spams")!!
+			Notify.requestAndWarn(context, server, messageText, phoneNumber)
 		}
 	}
 }

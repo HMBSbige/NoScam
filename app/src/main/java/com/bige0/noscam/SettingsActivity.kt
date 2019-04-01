@@ -23,7 +23,6 @@ import android.view.*
  */
 class SettingsActivity : AppCompatPreferenceActivity()
 {
-
 	override fun onCreate(savedInstanceState: Bundle?)
 	{
 		super.onCreate(savedInstanceState)
@@ -95,7 +94,7 @@ class SettingsActivity : AppCompatPreferenceActivity()
 			// to their values. When their values change, their summaries are
 			// updated to reflect the new value, per the Android Design
 			// guidelines.
-			bindPreferenceSummaryToValue(findPreference("example_text"))
+			bindPreferenceSummaryToValue(findPreference("Server"))
 		}
 
 		override fun onOptionsItemSelected(item: MenuItem): Boolean
@@ -124,11 +123,10 @@ class SettingsActivity : AppCompatPreferenceActivity()
 			{
 				// For list preferences, look up the correct display value in
 				// the preference's 'entries' list.
-				val listPreference = preference
-				val index = listPreference.findIndexOfValue(stringValue)
+				val index = preference.findIndexOfValue(stringValue)
 
 				// Set the summary to reflect the new value.
-				preference.setSummary(if (index >= 0) listPreference.entries[index]
+				preference.setSummary(if (index >= 0) preference.entries[index]
 									  else null)
 
 			}
