@@ -1,15 +1,12 @@
 package com.bige0.noscam
 
-import android.content.res.Configuration
-import android.os.Bundle
-import android.preference.PreferenceActivity
-import android.support.annotation.LayoutRes
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatDelegate
-import android.support.v7.widget.Toolbar
-import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
+import android.content.res.*
+import android.os.*
+import android.preference.*
+import android.support.annotation.*
+import android.support.v7.app.*
+import android.support.v7.widget.*
+import android.view.*
 
 /**
  * A [android.preference.PreferenceActivity] which implements and proxies the necessary calls

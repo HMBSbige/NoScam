@@ -6,7 +6,6 @@ import android.content.pm.*
 import android.icu.text.*
 import android.net.*
 import android.os.*
-import android.preference.*
 import android.support.design.widget.*
 import android.support.v4.app.*
 import android.support.v4.view.*
